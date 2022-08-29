@@ -28,6 +28,7 @@ body {
     background-color: grey;
     border-left: none;
     border-right: none;
+    outline: none;
     color: white;
     height: 40px;
     width: 35px;
