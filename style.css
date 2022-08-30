@@ -26,12 +26,13 @@ body {
 
 .input-row .input-content {
     background-color: grey;
+    border-color: grey;
     border-left: none;
     border-right: none;
     outline: none;
     color: white;
-    height: 40px;
-    width: 35px;
+    height: 50px;
+    width: 45px;
     text-align: center;
     font-weight: bold;
     font-size: large;
@@ -40,7 +41,7 @@ body {
 /* Keyboard */
 .keyboard-grid {
     display: grid;
-    padding-top: 350px;
+    padding-top: 300px;
 }
 
 .keyboard-grid .keyboard-row {

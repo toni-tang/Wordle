@@ -11,10 +11,12 @@ const rows = [rowOne, rowTwo, rowThree, rowFour, rowFive]
 var rowNum = 0;
 var pos = 0;
 
-const ans = "LLLLL"
+const wordBank = ["AUDIO", "EARTH", "DEATH", "HORSE", "DONUT", "MOUND", "HOUSE", "ZEBRA", "CREATE", "CHAIR"]
+const ans = wordBank[Math.floor(Math.random() * 10)]
 
 function keyboardType(row, pos, letter) {
     row[pos].value = letter
+    
     if(row.length-1 < pos)
     {
         window['pos'] = row.length-1
@@ -27,6 +29,7 @@ function keyboardType(row, pos, letter) {
 
 function deleteLetter(row, pos) {
     row[pos-1].value = ''
+    
     if(pos <= 0){
         
         window['pos'] = 0;
@@ -39,12 +42,45 @@ function deleteLetter(row, pos) {
 
 function checkAnswer(row, ans, rowNum, pos) {
     if(row[row.length-1].value == '') return;
+    if(rowNum === 5) return;
+
+    var check = ""
+
     for(let i = 0; i < row.length; i++) 
     {
-       if(row[i].value === ans.charAt(i)){
-            row[i].value = 'P'
-       }
+        if(row[i].value === ans.charAt(i))
+        {
+            row[i].style.backgroundColor = "green"
+            row[i].style.borderColor = "green"
+            check += '-'
+        }
+        else
+        {
+            row[i].style.backgroundColor = "gray"
+            row[i].style.borderColor = "gray"
+            check += row[i].value
+        }
     }
+
+    if(check == "-----")
+    {
+        window['rowNum'] = 5
+        return;
+    } 
+
+    for(let j = 0; j < row.length; j++)
+    {
+        for(let k = 0; k < ans.length; k++)
+        {
+            if(check.charAt(k) == '-') k++
+            else if(check.charAt(j) == ans.charAt(k) && row[j].style.backgroundColor === "gray")
+            {
+                row[j].style.backgroundColor = "rgb(226, 208, 8)"
+                row[j].style.borderColor = "rgb(226, 208, 8)"
+            }
+        }   
+    }
+
 
     window['rowNum']++
     window['pos'] = 0
